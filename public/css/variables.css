@@ -1,0 +1,12 @@
+/* Variables */
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&family=Poppins&display=swap');
+
+:root {
+    --light-grey: #F5F5F5;
+    --grey: #7C7C7C;
+    --dark-blue: #204051;
+    --primary: #3B6978;       
+    --font_baloo: 'Baloo Da 2', cursive;
+    --font_poppins: 'Poppins', sans-serif; 
+} 

@@ -1,0 +1,283 @@
+/* Maquetado mobile first (a partir de pantalla de 320)*/
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    user-select: none;
+}
+.main-header {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: var(--font_poppins);
+    font-size: 1rem;
+    height: fit-content;
+    height: -moz-fit-content;
+    min-height: 75px;
+    padding: 10px 15px;
+    width: 100%;
+    z-index: 999;
+}
+
+.main-header .navigation-bar {
+    display: none;
+}
+
+.main-header .user-icons-desktop {
+     display: none;
+}
+
+.main-header .burguer-menu-icon{
+    font-size: 24px;
+    order: 0; 
+}
+
+.main-header .logo {
+    height: 55px;
+    width: 222px;
+    order: 1;
+}  
+
+.main-header .logo img {
+    width: 100%;
+}
+
+.main-header .search-icon {
+    font-size: 24px;
+    order: 2;
+}
+
+.main-header .search-icon i{
+    cursor: pointer;
+}
+
+.main-header .search-form-desktop {
+    display: none;
+}
+
+/* Botón y barra de búsqueda mobile */
+
+.search-form-mobile {
+    display: none;
+    order: 3;
+    background-color: white;
+    padding: 10px;
+}
+
+.search-bar {
+    border: 1px solid var(--light-grey);
+    border-radius: 50px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    margin: 0 10px;
+}
+
+.search-bar input {
+    border: none;
+    flex-grow: 1;
+}
+
+.search-bar input:focus {
+    outline: none;
+} 
+
+.search-bar input::placeholder {
+    color: var(--grey);
+    font-family: var(--font_poppins);
+}
+
+.search-bar button {
+    border: none;
+    background-color: white;
+}
+
+/* Finaliza botón y barra de búsqueda mobile */
+
+/* Botón y menú desplegable mobile */
+.main-header .navigation-bar {
+    order: 4;
+    padding: 15px;
+    width: 100%;
+}
+
+.main-header .navigation-bar ul.menu li {
+    padding: 10px 0;
+    cursor: pointer;
+    transition: color .5s ease;
+}
+
+.main-header .navigation-bar ul.menu li:hover {
+    color: var(--primary);
+}
+
+.main-header .navigation-bar .user-icons-mobile {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main-header .navigation-bar .user-icons-mobile i{
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.main-header .navigation-bar#navigation-bar-desktop {
+    display: none;
+}
+
+/* Menu desplegable de subcategorías */
+
+.nav_menu {
+    font-family: var(--font_poppins);
+    font-size: 1rem;
+}
+
+.subcategory_menu {
+    display: none;
+}
+
+.subcategory_menu.active {
+    display: block;
+    background-color: white;
+}
+
+.subcategory_menu .subcategory_header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.subcategory_menu .subcategory_header img {
+    width: 20px;
+    height: 20px;
+}
+
+.subcategory_menu ul {
+    padding: 15px;
+}
+
+.header-opacity {
+    opacity: 0.8;
+}
+
+/* MEDIA QUERIES */
+/* Tablet */
+@media (min-width: 768px){
+    .search-form-mobile {
+        width: 35%;
+        margin: 0 auto;
+    }
+
+}
+
+/* Escritorio */
+@media screen and (min-width: 992px) {
+
+    .main-header {
+        height: 100px;
+        padding: 10px 30px;
+    }
+
+    .main-header {
+        flex-wrap: nowrap;
+    }
+
+    .main-header .navigation-bar {
+        display: inherit;
+        order: 1;
+        width: 40%;
+    }
+
+    .main-header .navigation-bar .menu {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        justify-content: space-around;
+    }
+
+        
+    .main-header .navigation-bar#navigation-bar-desktop {
+        display:inherit;
+    }
+
+    
+    .main-header .navigation-bar#navigation-bar-mobile {
+        display: none;
+    }
+
+   .main-header .burguer-menu-icon{
+        display: none;
+    }    
+
+   .main-header .logo {
+        height: 68px;
+        width: 262px;
+        order: 0;
+    }
+    
+    .main-header .search-icon {
+        display: none;
+    }
+
+    
+    .main-header .search-form-desktop {
+        display: inherit;
+        order: 3;
+    }
+    
+    .main-header .navigation-bar .user-icons-mobile {
+        display: none;
+    }
+    
+    .main-header .logo {
+        height: 68px;
+        width: 262px;
+        order: 0;
+    }
+
+    .main-header .user-icons-desktop {
+        display: flex;
+        font-size: 24px;
+        order: 4;
+    }
+
+    .main-header .user-icons-desktop i {
+        margin-left: 10px;
+    }
+
+    .user {
+        position: relative;
+    }
+
+    .menu-user {
+        display: none;
+        position: absolute;
+        font-size: 1rem;
+        width: 9rem;
+        background-color: white;
+        padding: 1rem;
+        border-radius: .5rem;
+        margin-left: -3rem;
+    }
+
+    .user:hover .menu-user{
+       display: block;
+    }
+
+    .session {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #00d900;
+        border-radius: 50px;
+        position: relative;
+        top: -10px;
+        right: 0px;
+    }
+
+}

@@ -1,0 +1,47 @@
+/* Estilos generales */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.text-danger{
+    color: tomato;
+}
+
+.btn {
+    width: fit-content;
+    width: -moz-fit-content;
+    padding: 10px 20px;
+    color: white;
+    font-family: var(--font_baloo);
+    font-weight: bold;
+    border-radius: 1rem;
+    border: none;
+    outline: none;
+}
+
+.btn-ad-primary {
+    width: fit-content;
+    width: -moz-fit-content;
+    background: var(--primary);
+    transition: all 1s ease;
+}
+
+.btn-ad-primary:hover {
+    background: linear-gradient(90deg, white, var(--primary)) ;
+    color: var(--primary)    
+}
+
+

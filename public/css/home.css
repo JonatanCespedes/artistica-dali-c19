@@ -1,0 +1,140 @@
+.home {
+    max-width: 1200px;
+    margin: 0 auto
+}
+
+@keyframes mancha {
+     0% {
+        opacity: 0;
+     }   
+
+     100% {
+        opacity: 0.5;
+     }
+}
+
+.mancha {
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0.5;
+    animation-name: mancha;
+    animation-duration:15s;
+    animation-iteration-count: 1;
+    z-index: -1;
+}
+
+.mancha2 {
+    position: absolute;
+    left: 0;
+    top: 90%;
+    opacity: 0.5;
+    animation-name: mancha;
+    animation-duration: 20s;
+    z-index: -1;
+}
+
+.mancha2 img {
+    width: 100%;
+}
+
+
+/* OFERTAS */
+
+.special-offers {
+    background: linear-gradient(45deg, #3B6978, transparent);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.section__title {
+    font-family: var(--font_baloo);
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+    .special-offers {
+        margin-bottom: 70px;
+    }
+    
+    .section__title {
+        margin-bottom: 35px;
+        font-size: 2rem;
+    }
+    
+}
+
+/* CATEGORIAS */
+
+@keyframes category {
+    0% {
+        transform: rotate(-1deg);
+    }
+
+    50% {
+        transform: rotate(1deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.categories-section {
+    width: 100%;
+    padding: 20px;
+}
+
+.home-categories {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.category-card {
+    width: 100%;
+    border-radius: 20px;
+    margin: 20px 0;
+    transition: all 1s ease;
+    box-shadow: 0 0 5px var(--primary);
+}
+
+.category-card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--primary);
+}
+
+.category-card img{
+    width: 100%;
+    border-radius: 20px;
+}
+
+.banner {
+    background: linear-gradient(45deg, transparent, white);
+    padding: 20px;
+    margin: 50px 0;
+    width: 100%;
+}
+
+.banner img {
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    .categories-section {
+        padding: 70px;
+    }
+    .home-categories {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .category-card {
+        width: 30%;
+    }
+}

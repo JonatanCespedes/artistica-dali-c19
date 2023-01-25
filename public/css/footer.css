@@ -1,0 +1,212 @@
+/* ----------------------------------------------------------------------------------------------------------- */
+/* GENERAL FOOTER */
+
+.footer {
+    font-family: var(--font_poppins);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer ul {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.footer li {
+    list-style: none;
+    padding: 5px 0;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #fff;
+    transition: color .5s ease;
+}
+
+.footer a:hover {
+    color: #bdbdbd;
+    transition: color .5s ease;
+}
+
+.footer h4 {
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    padding: 15px 0 10px 0;
+    margin: 0;
+}
+
+.footer .border {
+    width: 90%;
+    border-top: 2px solid #fff;
+    margin: 0;
+}
+
+
+/* FOOTER */
+
+.footer {
+    border-radius: 15px 15px 0px 0px;
+    background: var(--primary);
+}
+
+.footer .contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+/* CONTENEDORES */
+
+.footer .navegacion,
+.footer .pagos,
+.footer .contacto {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/* NAVEGACION */
+
+.footer .navegacion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    max-width: 300px;
+}
+
+
+/* PAGOS */
+
+.footer .pagos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+    max-width: 400px;
+}
+
+.footer .pagos .pagos-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer .pagos .imagen {
+    width: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer .pagos img {
+    width: 100%;
+    max-width: 100px;
+}
+
+
+/* CONTACTO */
+
+.footer .contacto {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 300px;
+}
+
+.footer .social {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 10px 0 20px 0;
+    max-width: 220px;
+}
+
+.footer .social img {
+    width: 100%;
+}
+
+
+/* MEDIA QUERIES */
+
+@media (min-width: 576px) {
+    .footer .contacto div {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-width: 300px;
+    }
+
+    .footer .navegacion div {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-bottom: 20px;
+        max-width: 300px;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .footer .border {
+        display: none;
+    }
+
+    .footer .contenedor {
+        justify-content: space-around;
+        padding: 20px 0;
+        max-width: 1150px;
+        margin: 0 auto;
+    }
+
+    .footer .navegacion {
+        width: 30%;
+        border-right: 2px solid #fff;
+        margin: 0;
+    }
+
+    .footer .navegacion div{
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .footer .pagos {
+        width: 30%;
+        align-items: flex-start;
+    }
+
+    .footer .contacto {
+        width: 30%;
+        border-left: 2px solid #fff;
+    }
+
+    .footer .contacto div {
+        flex-direction: column;
+    }
+
+    .footer .contacto .social {
+        padding-bottom: 0;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .footer .navegacion {
+        padding-right: 10%;
+    }
+
+    .footer .contacto {
+        padding-left: 10%;
+    }
+}
