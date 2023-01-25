@@ -1,0 +1,86 @@
+<header>
+    <div class="main-header">
+        
+        <div class="logo">
+            <a href="/">
+                <img src="/images/logo/logo.png" alt="">
+            </a>
+        </div>  
+
+        <i class="fas fa-bars burguer-menu-icon" onclick="dropMenu()"></i>
+
+        <!-- Menú de navegación mobile-->
+        <nav class="navigation-bar" id="navigation-bar-mobile">
+            
+            <div class="user-icons-mobile">
+                <a href="/users/login"><i class="fas fa-user"></i></a>
+                <a href="/products/cart"><i class="fas fa-shopping-cart"></i></a>
+            </div> 
+            
+            <!-- Lista con los elementos del menú (categorías) -->
+            <ul class="menu">
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(`school`)">
+                    Escolar
+                    <i class="fas fa-chevron-down" ></i>
+                </li>
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(`art`)">
+                    Artística
+                    <i class="fas fa-chevron-down" ></i>
+                </li>
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(`office`)">
+                    Oficina
+                    <i class="fas fa-chevron-down" ></i>
+                </li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav> 
+
+        <!-- Menú de navegación desktop -->
+        <nav class="navigation-bar" id="navigation-bar-desktop">
+        <!-- Lista con los elementos del menú (categorías) -->
+            <ul class="menu">
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(`school`)">
+                    Escolar
+                    <i class="fas fa-chevron-down" ></i>
+                </li>
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(`art`)">
+                    Artística
+                    <i class="fas fa-chevron-down" ></i>
+                </li>
+                <li class="dropdown-menu" onclick="dropSubCategoryMenu(`office`)">
+                    Oficina
+                    <i class="fas fa-chevron-down" ></i>
+                </li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav> 
+
+        <!-- Icono del buscador en header mobile -->
+        <div class="search-icon" onclick="dropSearch()">
+            <i class="fas fa-search"></i>
+        </div>
+
+        <!-- Buscador escritorio -->
+        <form action="#" class="search-form-desktop">
+            <div class="search-bar">
+                <input type="search" name="busqueda" id="">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+
+        <div class="user-icons-desktop">
+            <div class="user">
+                <a href="/users/login"><i class="fas fa-user"></i></a>
+            </div>
+            <a href="/products/cart"><i class="fas fa-shopping-cart"></i></a>
+        </div>  
+    </div>
+    <!-- Buscador mobile -->
+
+    <form action="#" class="search-form-mobile" id="search">
+        <div class="search-bar">
+            <input type="search" name="busqueda" id="" placeholder="Buscar">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </form>
+</header>
