@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('partials/head.ejs') %>
+<body>
+    <%- include('partials/header.ejs') %>
+    <main class="categories">
+        <div class="cat_banner container-fluid">
+            <img src="/images/categorias/<%= category.image %> " alt="Portada de categoria <%= category.name %> ">
+        </div>
+        <div class="subcategories_menu-mobile">
+            <div id="mySidepanel" class="sidepanel">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <% subCategories.forEach(subCategory => { %>
+                    <a href="#"><%- subCategory %></a>
+                <% }) %>    
+            </div>
+              
+            <button class="openbtn" onclick="openNav()">Subcategorias</button>
+        </div>
+        <div class="container products-container">
+            <aside class="subcategories_menu-desktop">
+                <% subCategories.forEach(subCategory => { %>
+                    <a href="#"><%- subCategory %></a>
+                <% }) %>   
+            </aside>
+            <section class="products">
+                <% products.forEach(product => { %>
+                    <div class="product">
+                        <a href="/products/detail/<%- product.id %>">
+                            <div class="productDiscount"><%- product.discount %>% OFF</div>
+                            <img src="/images/productos/<%- product.image[0] %>" alt="">
+                            <p class="productName"> 
+                                <% if (product.name.length > 30) { %>
+                                    <%- `${product.name.slice(0,30)}...` %>
+                                <% } else { %>
+                                    <%= product.name %>
+                                <% } %></p>
+                            <h4 class="productPrice">$<%- product.price %></h4>
+                        </a>
+                    </div>
+                <% }) %> 
+            </section>
+        </div>
+    </main>
+    <%- include('partials/footer.ejs')%>
+    <script src="/javascripts/categoriesSidePanel.js"></script>
+</body>
+</html>

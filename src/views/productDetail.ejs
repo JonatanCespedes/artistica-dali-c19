@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('partials/head.ejs') %>
+<body>
+    <!-- /* HEADER */ -->
+    <%- include('partials/header.ejs') %>
+    <main class="productDetail-container">
+        <section class="productDetail">
+            <div class="images-container">
+                <div class="thumbnailImages">
+                    <% product.image.forEach(image => { %>
+                        <img src="/images/productos/<%- image%>" alt="Imagen de producto" onclick="myFunction(this);">
+                    <% }) %>
+                </div>
+                <div class="mainImage">
+                    <img src="/images/productos/<%= product.image[0]%>" alt="Imagen de producto" id="expandedImg">
+                </div>
+            </div>
+            <div class="productData-container">
+                <h3 class="productName"><%= product.name %> </h3>
+                <div class="productPrice">$<%= product.price %> </div>
+                <div class="productNumber">
+                    <label for="cantidad">Cantidad</label>
+                    <div class="counter">
+                        <button type="button" class="btn-subtract" onclick="subtract();">
+                            -
+                        </button>
+                        <div id="count">1</div>
+                                
+                        <button type="button" id="btn-add" onclick="add();">
+                            +
+                        </button>
+                    </div>
+                   
+                </div>
+                
+                <div class="button-addToCart">
+                    <div class="btn-ad btn-ad-primary">
+                        Agregar al carrito
+                    </div>
+                </div>
+               
+            </div>
+        </section>
+        <section class="productDescription">
+            <div class="description">
+                <h5>Descripción del producto</h5>
+                <p><%= product.description %> </p>
+            </div>
+            <div class="comments">
+                <h5>Opiniones</h5>
+                <div class="comment">
+                    <div class="stars">
+                        <img src="/images/comment-stars.png" alt="">
+                    </div>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor sunt aliquid illo qui amet pariatur?</p>
+                </div>
+            </div>
+        </section>
+        <section>
+          <!-- /* Slider */ -->  
+          <%- include('partials/slider.ejs') %>
+        </section>
+    </main>
+    <!-- /* FOOTER */ -->
+    <%- include('partials/footer.ejs')%>
+  
+      
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</body>
+</html>

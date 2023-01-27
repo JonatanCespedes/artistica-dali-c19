@@ -3,7 +3,49 @@
     <%- include("partials/head")%> 
 <body>
     <%- include("partials/header")%> 
-    <%- include("partials/footer")%> 
+    <main class="home">
+        <!-- CAROUSEL -->
+        <%- include("partials/carousel")%> 
+        <!-- END CAROUSEL -->
+        <!-- SALE -->
+        <%- include("partials/slider")%> 
+        <!-- END SALE -->
 
+        <div class="mancha">
+            <img src="/images/manchas/pngwing.com (5).png" alt="">
+        </div>
+
+        <div class="mancha2">
+            <img src="/images/manchas/pngwing.com (7).png" alt="">
+        </div>
+
+        <!-- CATEGORIES -->
+        <section class="categories-section">
+            <div class="home-categories">
+                <div class="category-card">
+                    <a href="/products/category/1"><img src="/images/categorias/cat_artistica.jpg" alt=""></a>
+                </div>
+                <div class="category-card">
+                    <a href="/products/category/2"> <img src="/images/categorias/cat_escolar.jpg" alt=""></a>
+                </div>
+                <div class="category-card">
+                    <a href="/products/category/3"> <img src="/images/categorias/cat_oficina.jpg" alt=""></a>
+                </div>
+            </div>
+        </section>
+        <!-- END CATEGORIES -->
+
+        <section class="banner">
+            <img src="/images/bannerpng 1.png" alt="">
+        </section>
+    
+    </main>
+    
+    
+    <%- include("partials/footer")%> 
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="/js/carousel.js"></script>
+    <script src="/js/product-slider.js"></script>
 </body>
 </html>
