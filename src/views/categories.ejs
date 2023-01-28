@@ -10,7 +10,7 @@
         <div class="subcategories_menu-mobile">
             <div id="mySidepanel" class="sidepanel">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <% subCategories.forEach(subCategory => { %>
+                <% subcategories.forEach(subCategory => { %>
                     <a href="#"><%- subCategory %></a>
                 <% }) %>    
             </div>
@@ -19,7 +19,7 @@
         </div>
         <div class="container products-container">
             <aside class="subcategories_menu-desktop">
-                <% subCategories.forEach(subCategory => { %>
+                <% subcategories.forEach(subCategory => { %>
                     <a href="#"><%- subCategory %></a>
                 <% }) %>   
             </aside>
@@ -43,6 +43,6 @@
         </div>
     </main>
     <%- include('partials/footer.ejs')%>
-    <script src="/javascripts/categoriesSidePanel.js"></script>
+    <script src="/js/categoriesSidePanel.js"></script>
 </body>
 </html>
