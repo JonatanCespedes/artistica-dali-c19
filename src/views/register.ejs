@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')%>
+<body>
+<%- include('partials/header')%>
+<div class="userMancha">
+    <img src="/images/manchas/pngwing.com (7).png" alt="">
+</div>
+    <main class="usersForm-container">
+       
+        <h3 class="userTitle">Registrate</h3>
+        <form action="/users/register" method="POST" enctype="multipart/form-data" class="form-ad" >
+            <div class="form-ad-input">
+                <input type="text" name="name" placeholder="Nombre" value="<%= locals.old && old.name %>">
+                <% if (locals.errors && errors.name) { %>
+                    <small class="text-danger"><%= errors.name.msg %> </small>
+                <% } %>
+            </div>
+            <div class="form-ad-input">
+                <input type="text" name="last_name" placeholder="Apellido" value="<%= locals.old && old.last_name %>">
+                <% if (locals.errors && errors.last_name) { %>
+                    <small class="text-danger"><%= errors.last_name.msg %> </small>
+                <% } %>
+            </div>
+            <div class="form-ad-input">
+                <input type="email" name="email" placeholder="Ingresá tu email" >
+                <% if (locals.errors && errors.email) { %>
+                    <small class="text-danger"><%= errors.email.msg %> </small>
+                <% } %>
+            </div>
+            <div class="form-ad-input">
+                <input type="password" name="pass1" placeholder="Contraseña">
+                <% if (locals.errors && errors.pass1) { %>
+                    <small class="text-danger"><%= errors.pass1.msg %> </small>
+                <% } %>
+            </div>
+            <div class="form-ad-input">
+                <input type="password" name="pass2" placeholder="Repetir contraseña">
+                <% if (locals.errors && errors.pass2) { %>
+                    <small class="text-danger"><%= errors.pass2.msg %> </small>
+                <% } %>
+            </div>
+            <div class="input-file">
+                <p>Agregar foto</p>
+                <input type="file" name="avatar">
+            </div>
+            <div class="form-ad-input_check">
+                <input type="checkbox" name="terms" id="check">
+                <label for="check">Acepto los términos y condiciones</label>
+                <% if (locals.errors && errors.terms) { %>
+                    <small class="text-danger"><%= errors.terms.msg %> </small>
+                <% } %>
+            </div>
+            <button type="submit" class="btn btn-ad-primary">
+                REGISTRATE
+            </button>
+            <a href="/users/login" class="userLink">Ya tengo cuenta</a>
+        </form>
+    </main>
+<%- include('partials/footer')%>
+</body>
+</html>

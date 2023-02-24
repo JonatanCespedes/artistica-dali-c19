@@ -1,0 +1,14 @@
+[{
+    "id": 1,
+    "name": "User",
+    "last_name": "Test",
+    "email": "test@mail.com",
+    "pass": "1234",
+    "avatar": "default-image.png",
+    "rol": "ROL_USER",
+    "tel": "",
+    "address": "",
+    "pc": "",
+    "province": "",
+    "city": ""
+}]

@@ -12,9 +12,11 @@ app.set("views", "./src/views");
 /* Routers */
 const indexRouter = require("./routes");
 const productRouter = require("./routes/product");
+const userRouter = require("./routes/user");
 
 /* Routes Middlewares */
 app.use("/", indexRouter);
 app.use("/products", productRouter);
+app.use("/users", userRouter);
 
 app.listen(PORT, () => console.log(`Server listen in port ${PORT}\nhttp://localhost:${PORT}`));
