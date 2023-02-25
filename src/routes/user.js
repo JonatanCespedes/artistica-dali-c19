@@ -1,8 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../controllers/userController");
+const { login, register, processRegister } = require("../controllers/userController");
+const uploadAvatar = require("../middlewares/uploadAvatar");
+const registerValidator = require("../validations/registerValidator");
+/* GET - Login Form */
+router.get("/login", login); 
 
-router.get("/login", controller.login); 
-router.get("/register", controller.register); 
+/* GET - Register form */
+router.get("/register", register); 
+/* POST - Register user data */
+router.post("/register", uploadAvatar.single("avatar"), registerValidator, processRegister)
 
 module.exports = router;
