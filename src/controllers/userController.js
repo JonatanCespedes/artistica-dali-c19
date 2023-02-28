@@ -2,10 +2,33 @@ const { users, writeUsersJson } = require("../database");
 const { validationResult } = require("express-validator");
 module.exports = {
     login: (req, res) => {
-        res.render("login")
+        res.render("login", { session: req.session })
+    },
+    processLogin: (req, res) => {
+        let errors = validationResult(req);
+
+        if (errors.isEmpty()) {
+
+            let user = users.find(user => user.email === req.body.email);
+
+            req.session.user = {
+                name: user.name,
+                avatar: user.avatar,
+                rol: user.rol
+            }
+
+            res.locals.user = req.session.user;
+
+            res.redirect("/");
+        } else {
+            return res.render("login", {
+                errors: errors.mapped(),
+                session: req.session
+            })
+        }
     },
     register: (req, res) => {
-        res.render("register")
+        res.render("register", {session: req.session})
     },
     processRegister: (req, res) => {
         let errors = validationResult(req);
@@ -42,7 +65,8 @@ module.exports = {
         } else {
             res.render("register", {
                 errors: errors.mapped(),
-                old: req.body
+                old: req.body,
+                session: req.session
             })
         }
       

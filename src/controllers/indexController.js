@@ -6,7 +6,8 @@ module.exports = {
         res.render("index", {
             carousel,
             sliderTitle: "Productos en oferta",
-            sliderProducts: products
+            sliderProducts: products,
+            session: req.session
         })
     }
 }

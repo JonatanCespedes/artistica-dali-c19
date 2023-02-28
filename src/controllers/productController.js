@@ -19,7 +19,8 @@ module.exports = {
         res.render("categories", {
             category,
             subcategories,
-            products: productsByCategory
+            products: productsByCategory,
+            session: req.session
         })
         
     }

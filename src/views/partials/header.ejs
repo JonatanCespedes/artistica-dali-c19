@@ -70,7 +70,18 @@
 
         <div class="user-icons-desktop">
             <div class="user">
-                <a href="/users/login"><i class="fas fa-user"></i></a>
+                <% if (typeof session.user != "undefined") { %>
+                    <i class="fas fa-user"></i><span class="session"></span>
+                    <div class="menu-user">
+                        <a href="/users/profile">Mis datos</a>
+                        <a href="/users/logout">Cerrar sesión</a>
+                        <% if (session.user.rol === "ADMIN") { %>
+                            <a href="/admin/index">ADMIN</a>
+                        <% } %>
+                    </div>
+                <% } else {%>
+                    <a href="/users/login"><i class="fas fa-user"></i></a>
+                <% } %>
             </div>
             <a href="/products/cart"><i class="fas fa-shopping-cart"></i></a>
         </div>  

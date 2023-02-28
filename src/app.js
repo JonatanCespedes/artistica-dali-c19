@@ -3,6 +3,7 @@ const app = express();
 const PORT = 3000;
 const path = require("path");
 const methodOverride = require("method-override");
+const session = require("express-session");
 
 app.use(express.static("public"));
 
@@ -14,6 +15,11 @@ app.set("views", "./src/views");
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(methodOverride("_method"));
+app.use(session({
+    secret: "artisticaDali",
+    resave: false,
+    saveUninitialized: true
+}))
 
 /* Routers */
 const indexRouter = require("./routes");
