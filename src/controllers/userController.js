@@ -12,9 +12,22 @@ module.exports = {
             let user = users.find(user => user.email === req.body.email);
 
             req.session.user = {
+                id: user.id,
                 name: user.name,
                 avatar: user.avatar,
                 rol: user.rol
+            }
+
+            let tiempoDeVidaCookie = new Date(Date.now() + 60000);
+
+            if(req.body.remember) {
+                res.cookie(
+                    "userArtisticaDali", 
+                    req.session.user, 
+                    {
+                        expires: tiempoDeVidaCookie,
+                        httpOnly: true
+                    })
             }
 
             res.locals.user = req.session.user;
@@ -61,7 +74,7 @@ module.exports = {
      
             writeUsersJson(users);
      
-            res.send("Usuario creado")
+            res.redirect("/users/login");
         } else {
             res.render("register", {
                 errors: errors.mapped(),
@@ -70,5 +83,15 @@ module.exports = {
             })
         }
       
+    },
+    logout: (req, res) => {
+
+        req.session.destroy();
+        if(req.cookies.userArtisticaDali){
+            res.cookie("userArtisticaDali", "", {maxAge: -1})
+        }
+
+        res.redirect("/");
+
     }
 }

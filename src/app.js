@@ -4,6 +4,7 @@ const PORT = 3000;
 const path = require("path");
 const methodOverride = require("method-override");
 const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 app.use(express.static("public"));
 
@@ -19,7 +20,9 @@ app.use(session({
     secret: "artisticaDali",
     resave: false,
     saveUninitialized: true
-}))
+}));
+app.use(cookieParser());
+
 
 /* Routers */
 const indexRouter = require("./routes");
