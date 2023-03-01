@@ -5,14 +5,15 @@ const path = require("path");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const cookieCheck = require("./middlewares/cookieCheck");
 
-app.use(express.static("public"));
 
 /* Template engine config */
 app.set("view engine", "ejs");
 app.set("views", "./src/views");
 
 /* Middlewares */
+app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(methodOverride("_method"));
@@ -22,6 +23,7 @@ app.use(session({
     saveUninitialized: true
 }));
 app.use(cookieParser());
+app.use(cookieCheck);
 
 /* Routers */
 const indexRouter = require("./routes");
