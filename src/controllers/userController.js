@@ -1,5 +1,7 @@
 const { users, writeUsersJson } = require("../database");
 const { validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
+
 module.exports = {
     login: (req, res) => {
         res.render("login", { session: req.session })
@@ -60,7 +62,7 @@ module.exports = {
              name: req.body.name,
              last_name: req.body.last_name,
              email: req.body.email,
-             pass: req.body.pass1,
+             pass: bcrypt.hashSync(req.body.pass1, 12),
              avatar: req.file ? req.file.filename : "default-image.png",
              rol: "USER",
              tel: "",

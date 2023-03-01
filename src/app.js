@@ -23,7 +23,6 @@ app.use(session({
 }));
 app.use(cookieParser());
 
-
 /* Routers */
 const indexRouter = require("./routes");
 const productRouter = require("./routes/product");
