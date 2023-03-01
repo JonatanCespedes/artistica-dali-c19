@@ -30,5 +30,6 @@ const userRouter = require("./routes/user");
 app.use("/", indexRouter);
 app.use("/products", productRouter);
 app.use("/users", userRouter);
+app.use("/users2", userRouter);
 
 app.listen(PORT, () => console.log(`Server listen in port ${PORT}\nhttp://localhost:${PORT}`));
