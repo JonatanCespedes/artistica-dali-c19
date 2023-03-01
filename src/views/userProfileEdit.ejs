@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')%>
+<body>
+<%- include('partials/header')%>
+<div class="userMancha">
+    <img src="/images/manchas/pngwing.com (7).png" alt="">
+</div>
+    <main class="usersForm-container">
+       
+        <h3 class="userTitle">Edita tu perfil</h3>
+        <form action="/users/profile/edit/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="form-ad" >
+            <div class="form-ad-input">
+                <input type="text" name="name" placeholder="Nombre" value="<%= locals.old ? old.name : user.name %>">
+                <% if (locals.errors && errors.name) { %>
+                    <small class="text-danger"><%= errors.name.msg %> </small>
+                <% } %>
+            </div>
+            <div class="form-ad-input">
+                <input type="text" name="last_name" placeholder="Apellido" value="<%= locals.old ? old.last_name : user.last_name %>">
+                <% if (locals.errors && errors.last_name) { %>
+                    <small class="text-danger"><%= errors.last_name.msg %> </small>
+                <% } %>
+            </div>
+            <div class="form-ad-input">
+                <input type="email" name="email" placeholder="Ingresá tu email" readonly value="<%= user.email %>">
+            </div>
+            <div class="form-ad-input">
+                <input type="text" name="tel" placeholder="Ingresá tu teléfono" value="<%= user.tel ? user.tel : "" %>">
+            </div>
+            <div class="form-ad-input">
+                <input type="text" name="address" placeholder="Domicilio" value="<%= user.address ? user.address : "" %>">
+            </div>
+            <div class="form-ad-input">
+                <input type="text" name="pc" placeholder="Código postal" value="<%= user.cp ? user.cp : "" %>">
+            </div>
+            <div class="form-ad-input">
+                <select name="province" id="">
+                    <option value="">Provincia</option>
+                </select>
+            </div>
+            <div class="form-ad-input">
+                <select name="city" id="">
+                    <option value="">Localidad</option>
+                </select>
+            </div>
+            <div class="input-file">
+                <p>Cambiar foto de perfil</p>
+                <input type="file" name="avatar">
+            </div>
+          
+            <button type="submit" class="btn btn-ad-primary">
+                GUARDAR
+            </button>
+            
+        </form>
+    </main>
+<%- include('partials/footer')%>
+</body>
+</html>
