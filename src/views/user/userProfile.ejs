@@ -8,7 +8,7 @@
 </div>
     <main class="userProfile">
       <div class="avatar">
-            <img src="/images/userAvatars/<%= user.avatar %>" alt="">
+            <img src="/images/avatar/<%= user.avatar %>" alt="">
         </div>
         <div class="userProfile-container">
             <div class="userProfile_box">
@@ -24,7 +24,7 @@
                 <p class="userProfile_item">Provincia: <%= user.province ? user.province : "------" %></p>
                 <p class="userProfile_item">Localidad: <%= user.city ? user.city : "------" %></p>
             </div>
-            <a href="/users/profile/edit/<%= user.id %>" class="btn btn-ad-primary">EDITAR DATOS</a>
+            <a href="/users/profile/edit" class="btn btn-ad-primary">EDITAR DATOS</a>
         </div> 
     </main>
 <%- include('../partials/footer')%>

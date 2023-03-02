@@ -6,12 +6,13 @@ const {
     processRegister, 
     processLogin, 
     logout,
-    profile
+    profile,
+    updateProfile
  } = require("../controllers/userController");
 const uploadAvatar = require("../middlewares/uploadAvatar");
 const registerValidator = require("../validations/registerValidator");
 const loginValidator = require("../validations/loginValidator");
-
+const userInSessionCheck = require("../middlewares/userInSessionCheck");
 /* GET - Login Form */
 router.get("/login", login); 
 /* POST - Login user */
@@ -23,9 +24,12 @@ router.get("/register", register);
 router.post("/register", uploadAvatar.single("avatar"), registerValidator, processRegister);
 
 /* GET - User logout */
-router.get("/logout", logout)
+router.get("/logout", logout);
 
 /* GET - User profile */
-router.get("/profile", profile)
+router.get("/profile", userInSessionCheck, profile);
+
+/* GET - User edit form */
+router.get("/profile/edit", userInSessionCheck, updateProfile);
 
 module.exports = router;
