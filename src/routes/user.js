@@ -7,12 +7,15 @@ const {
     processLogin, 
     logout,
     profile,
+    editProfile,
     updateProfile
  } = require("../controllers/userController");
 const uploadAvatar = require("../middlewares/uploadAvatar");
 const registerValidator = require("../validations/registerValidator");
 const loginValidator = require("../validations/loginValidator");
 const userInSessionCheck = require("../middlewares/userInSessionCheck");
+const updateUserValidator = require("../validations/updateUserValidator");
+
 /* GET - Login Form */
 router.get("/login", login); 
 /* POST - Login user */
@@ -30,6 +33,8 @@ router.get("/logout", logout);
 router.get("/profile", userInSessionCheck, profile);
 
 /* GET - User edit form */
-router.get("/profile/edit", userInSessionCheck, updateProfile);
+router.get("/profile/edit", userInSessionCheck, editProfile);
+/* PUT - Profile update */
+router.put("/profile/edit", uploadAvatar.single("avatar"), updateUserValidator, updateProfile);
 
 module.exports = router;

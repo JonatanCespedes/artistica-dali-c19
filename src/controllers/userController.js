@@ -106,7 +106,7 @@ module.exports = {
             session: req.session
         })
     },
-    updateProfile: (req, res) => {
+    editProfile: (req, res) => {
         let userInSessionId = req.session.user.id;
 
         let userInSession = users.find(user => user.id === userInSessionId);
@@ -115,5 +115,50 @@ module.exports = {
             user: userInSession,
             session: req.session
         })
+    },
+    updateProfile: (req, res) => {
+        let errors = validationResult(req);
+
+        if(errors.isEmpty()) {
+
+            let userId = req.session.user.id;
+            let user = users.find(user => user.id === userId);
+
+            const {
+                name,
+                last_name,
+                tel,
+                address,
+                postal_code,
+                province,
+                city
+            } = req.body;
+
+            user.name = name;
+            user.last_name = last_name;
+            user.tel = tel;
+            user.address = address;
+            user.postal_code = postal_code;
+            user.province = province;
+            user.city = city;
+            user.avatar = req.file ? req.file.filename : user.avatar;
+
+            writeUsersJson(users)
+
+            delete user.pass;
+
+            req.session.user = user;
+
+            return res.redirect("/users/profile");
+        } else {
+            const userInSessionId = req.session.user.id;
+            const userInSession = users.find(user => user.id === userInSessionId);
+
+            return res.render("user/userProfileEdit", {
+                user: userInSession,
+                session: req.session,
+                errors: errors.mapped(),
+            })
+        }
     }
 }
