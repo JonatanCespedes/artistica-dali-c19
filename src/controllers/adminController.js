@@ -38,7 +38,9 @@ module.exports = {
                     lastId = product.id
                 }
             })
-    
+
+            const files = req.files.map(file => file.filename)
+            
             let {
                 name, 
                 price, 
@@ -56,7 +58,7 @@ module.exports = {
                 discount,
                 category,
                 subcategory,
-                image: req.file ? req.file.filename : "default-image.png"
+                image: req.files ? files : ["default-image.png"]
             };
     
             products.push(newProduct);
@@ -90,6 +92,7 @@ module.exports = {
 
         if(errors.isEmpty()){
             const productId = Number(req.params.id);
+            const files = req.files.map(file => file.filename);
 
             let {
                 name, 
@@ -99,7 +102,7 @@ module.exports = {
                 subcategory, 
                 description
                 } = req.body;
-            
+
             products.forEach( product => {
                 if(product.id === productId){
                     product.id = product.id,
@@ -109,7 +112,7 @@ module.exports = {
                     product.discount = discount,
                     product.category = category,
                     product.subcategory = subcategory,
-                    product.image = req.file ? req.file.filename : product.image
+                    product.image = req.files ? files : product.image
                 }
             });
 
