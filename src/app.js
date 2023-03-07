@@ -29,10 +29,12 @@ app.use(cookieCheck);
 const indexRouter = require("./routes");
 const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
+const adminRouter = require("./routes/admin");
 
 /* Routes Middlewares */
 app.use("/", indexRouter);
 app.use("/products", productRouter);
 app.use("/users", userRouter);
+app.use("/admin", adminRouter);
 
 app.listen(PORT, () => console.log(`Server listen in port ${PORT}\nhttp://localhost:${PORT}`));
