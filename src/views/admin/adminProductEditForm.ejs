@@ -1,0 +1,75 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+        <%- include('partials/headAdmin') %>
+    <body>
+        <%- include('partials/headerAdmin') %>
+        
+        <div class="container" style="max-width: 700px;">
+          <div class="row">
+            <%- include('partials/adminSidebar') %>
+            <form class="row g-3" action="/admin/products/edit/<%= product.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div class="col-12">
+                    <label for="inputName" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="inputName" name="name" value="<%= locals.old ? old.name : product.name%>">
+                    <% if (locals.errors && errors.name) { %>
+                        <small class="text-danger"><%= errors.name.msg %> </small>
+                    <% } %>
+                </div>
+                <div class="col-12">
+                    <select class="form-select" id="specificSizeSelect" name="category">
+                      <option selected hidden>Categorias</option>
+                     <% categories.forEach(category => { %>
+                        <option value="<%- category.id %>" <%- locals.old && old.category == category.id ? "selected" : category.id == product.category ? `selected` : ""  %>><%- category.name %></option>
+                     <% }) %>                          <!--  si existe old y coinciden las categorias / selected /si no -> el id de la cat. es igual a la categoria del producto que estoy editando / selected si no null -->               
+                    </select>
+                    <% if (locals.errors && errors.category) { %>
+                        <small class="text-danger"><%= errors.category.msg %> </small>
+                    <% } %>
+                </div>
+                <div class="col-12">
+                    <select class="form-select" id="specificSizeSelect" name="subcategory">
+                      <option selected hidden>Subcategorias</option>
+                     <% subcategories.forEach(subcategory => { %>
+                        <option value="<%- subcategory%>" <%- locals.old && old.subcategory == subcategory ? "selected" : subcategory == product.subcategory ? `selected` : ""  %>><%- subcategory %></option>
+                     <% }) %>
+                    </select>
+                    <% if (locals.errors && errors.subcategory) { %>
+                        <small class="text-danger"><%= errors.subcategory.msg %> </small>
+                    <% } %>
+                </div>
+                <div class="col-12">
+                    <label for="inputPrice" class="form-label">Precio</label>
+                    <input type="number" class="form-control" id="inputPrice" name="price" value="<%= locals.old ? old.price : product.price%>">
+                    <% if (locals.errors && errors.price) { %>
+                        <small class="text-danger"><%= errors.price.msg %> </small>
+                    <% } %>
+                </div>
+                <div class="col-12">
+                    <label for="inputDiscount" class="form-label">Descuento</label>
+                    <input type="number" class="form-control" id="inputDiscount" name="discount" value="<%= locals.old ? old.discount : product.discount%>">
+                    <% if (locals.errors && errors.discount) { %>
+                        <small class="text-danger"><%= errors.discount.msg %> </small>
+                    <% } %>
+                </div>
+                <div class="col-12">
+                    <label for="inputImage" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" name="images" multiple aria-label="file example" id="inputImage">
+                </div>
+                <div class="col-12">
+                    <label for="validationTextarea" class="form-label">Descripción</label>
+                    <textarea class="form-control" name="description" id="validationTextarea" placeholder="Descripción" ><%= locals.old ? old.description : product.description %></textarea>
+                    <% if (locals.errors && errors.description) { %>
+                        <small class="text-danger"><%= errors.description.msg %> </small>
+                    <% } %>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    GUARDAR
+                </button>
+            </form>
+          </div>
+        </div>
+        <%- include('partials/adminScripts') %>
+        
+        </body>
+    </html>

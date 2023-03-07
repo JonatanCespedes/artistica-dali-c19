@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 
 module.exports = {
     login: (req, res) => {
-        res.render("login", { session: req.session })
+        res.render("user/login", { session: req.session })
     },
     processLogin: (req, res) => {
         let errors = validationResult(req);
@@ -36,14 +36,14 @@ module.exports = {
 
             res.redirect("/");
         } else {
-            return res.render("login", {
+            return res.render("user/login", {
                 errors: errors.mapped(),
                 session: req.session
             })
         }
     },
     register: (req, res) => {
-        res.render("register", {session: req.session})
+        res.render("user/register", {session: req.session})
     },
     processRegister: (req, res) => {
         let errors = validationResult(req);
@@ -78,7 +78,7 @@ module.exports = {
      
             res.redirect("/users/login");
         } else {
-            res.render("register", {
+            res.render("user/register", {
                 errors: errors.mapped(),
                 old: req.body,
                 session: req.session
@@ -95,5 +95,70 @@ module.exports = {
 
         res.redirect("/");
 
+    },
+    profile: (req, res) => {
+        let userInSessionId = req.session.user.id;
+
+        let userInSession = users.find(user => user.id === userInSessionId);
+
+        res.render("user/userProfile", {
+            user: userInSession,
+            session: req.session
+        })
+    },
+    editProfile: (req, res) => {
+        let userInSessionId = req.session.user.id;
+
+        let userInSession = users.find(user => user.id === userInSessionId);
+
+        res.render("user/userProfileEdit", {
+            user: userInSession,
+            session: req.session
+        })
+    },
+    updateProfile: (req, res) => {
+        let errors = validationResult(req);
+
+        if(errors.isEmpty()) {
+
+            let userId = req.session.user.id;
+            let user = users.find(user => user.id === userId);
+
+            const {
+                name,
+                last_name,
+                tel,
+                address,
+                postal_code,
+                province,
+                city
+            } = req.body;
+
+            user.name = name;
+            user.last_name = last_name;
+            user.tel = tel;
+            user.address = address;
+            user.postal_code = postal_code;
+            user.province = province;
+            user.city = city;
+            user.avatar = req.file ? req.file.filename : user.avatar;
+
+            writeUsersJson(users)
+
+            delete user.pass;
+
+            req.session.user = user;
+
+            return res.redirect("/users/profile");
+        } else {
+            const userInSessionId = req.session.user.id;
+            const userInSession = users.find(user => user.id === userInSessionId);
+
+            return res.render("user/userProfileEdit", {
+                user: userInSession,
+                session: req.session,
+                errors: errors.mapped(),
+            })
+        }
     }
 }

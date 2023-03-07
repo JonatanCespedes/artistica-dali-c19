@@ -12,5 +12,33 @@
     "postal_code": "",
     "province": "",
     "city": ""
+  },
+  {
+    "id": 8,
+    "name": "Jonatan",
+    "last_name": "Céspedes",
+    "email": "jona@mail.com",
+    "pass": "$2a$12$5q3HTnSQaoJTL399FYI9A.mneLRRcctklzuZehZEHgPxVlByT.fku",
+    "avatar": "1678142496482_avatar_.png",
+    "rol": "USER",
+    "tel": "1511111111",
+    "address": "Calle falsa 1234",
+    "postal_code": "",
+    "province": "",
+    "city": ""
+  },
+  {
+    "id": 9,
+    "name": "Admin",
+    "last_name": "Jona",
+    "email": "admin@mail.com",
+    "pass": "$2a$12$dRcSWYzJanJG0sGuRle9luWyvUbymZsC..0UO4VpWv8G.a04lqksG",
+    "avatar": "default-image.png",
+    "rol": "ADMIN",
+    "tel": "",
+    "address": "",
+    "postal_code": "",
+    "province": "",
+    "city": ""
   }
 ]

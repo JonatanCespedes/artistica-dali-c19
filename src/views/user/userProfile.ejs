@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head')%>
+<body>
+<%- include('../partials/header')%>
+<div class="userMancha">
+    <img src="/images/manchas/pngwing.com (5).png" alt="">
+</div>
+    <main class="userProfile">
+      <div class="avatar">
+            <img src="/images/avatar/<%= user.avatar %>" alt="">
+        </div>
+        <div class="userProfile-container">
+            <div class="userProfile_box">
+                <h3 class="userProfile_title">Datos personales</h3>
+                <p class="userProfile_item">Nombre: <%= user.name %></p>
+                <p class="userProfile_item">Email: <%= user.email %></p>
+                <p class="userProfile_item">Teléfono: <%= user.tel ? user.tel : "------" %></p>
+            </div>
+            <div class="userProfile_box">
+                <h3 class="userProfile_title">Datos de contacto</h3>
+                <p class="userProfile_item">Dirección: <%= user.address ? user.address : "------" %>></p>
+                <p class="userProfile_item">Código postal: <%= user.postal_code ? user.postal_code : "------" %></p>
+                <p class="userProfile_item">Provincia: <%= user.province ? user.province : "------" %></p>
+                <p class="userProfile_item">Localidad: <%= user.city ? user.city : "------" %></p>
+            </div>
+            <a href="/users/profile/edit" class="btn btn-ad-primary">EDITAR DATOS</a>
+        </div> 
+    </main>
+<%- include('../partials/footer')%>
+</body>
+</html>
