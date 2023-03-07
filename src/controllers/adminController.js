@@ -58,7 +58,7 @@ module.exports = {
                 discount,
                 category,
                 subcategory,
-                image: req.files ? files : ["default-image.png"]
+                image: files.length > 0 ? files : ["default-image.png"]
             };
     
             products.push(newProduct);
@@ -112,7 +112,7 @@ module.exports = {
                     product.discount = discount,
                     product.category = category,
                     product.subcategory = subcategory,
-                    product.image = req.files ? files : product.image
+                    product.image =  files.length > 0 ? files : product.image
                 }
             });
 

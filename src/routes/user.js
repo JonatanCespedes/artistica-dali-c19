@@ -15,14 +15,14 @@ const registerValidator = require("../validations/registerValidator");
 const loginValidator = require("../validations/loginValidator");
 const userInSessionCheck = require("../middlewares/userInSessionCheck");
 const updateUserValidator = require("../validations/updateUserValidator");
-
+const sessionUserCheck = require("../middlewares/sessionUserCheck");
 /* GET - Login Form */
-router.get("/login", login); 
+router.get("/login", sessionUserCheck, login); 
 /* POST - Login user */
 router.post("/login", loginValidator, processLogin);
 
 /* GET - Register form */
-router.get("/register", register); 
+router.get("/register", sessionUserCheck, register); 
 /* POST - Register user data */
 router.post("/register", uploadAvatar.single("avatar"), registerValidator, processRegister);
 
