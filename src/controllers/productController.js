@@ -1,6 +1,20 @@
 const { products, categories } = require("../database");
 
 module.exports = {
+    detail: (req, res) => {
+        let productId = Number(req.params.id);
+        
+        let product = products.find(product => product.id === productId)
+        let sliderProducts = products.filter(item => item.category === product.category)
+
+        res.render('productDetail', {
+            sliderTitle : "Productos relacionados",
+            sliderProducts,
+            product,
+            categories,
+            session: req.session
+        })
+    },
     category: (req, res) => {
         const categoryId = req.params.id;
         /* Busco la categoria solicitada */
