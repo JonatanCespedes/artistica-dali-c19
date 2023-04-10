@@ -1,5 +1,5 @@
 const { check, body } = require("express-validator");
-const { users } = require("../database");
+const { users } = require("../old_database");
 
 module.exports = [
     check("name")

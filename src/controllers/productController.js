@@ -1,4 +1,4 @@
-const { products, categories } = require("../database");
+const { products, categories } = require("../old_database");
 
 module.exports = {
     detail: (req, res) => {

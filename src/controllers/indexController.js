@@ -1,4 +1,4 @@
-const { carousel, products, categories } = require("../database")
+const { carousel, products, categories } = require("../old_database")
 
 module.exports = {
     
