@@ -1,13 +1,18 @@
-const { carousel, products, categories } = require("../old_database")
+const { carousel } = require("../old_database");
+const { Product } = require("../database/models");
 
 module.exports = {
     
     index: (req, res) => {
-        res.render("index", {
-            carousel,
-            sliderTitle: "Productos en oferta",
-            sliderProducts: products,
-            session: req.session
+        Product.findAll()
+        .then(products => {
+            res.render("index", {
+                carousel,
+                sliderTitle: "Productos en oferta",
+                sliderProducts: products,
+                session: req.session
+            })
         })
+        .catch(error => console.log(error));
     }
 }
