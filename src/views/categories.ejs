@@ -5,13 +5,13 @@
     <%- include('partials/header.ejs') %>
     <main class="categories">
         <div class="cat_banner container-fluid">
-            <img src="/images/categorias/<%= category.image %> " alt="Portada de categoria <%= category.name %> ">
+            <img src="/images/categorias/<%= category.banner %> " alt="Portada de categoria <%= category.name %> ">
         </div>
         <div class="subcategories_menu-mobile">
             <div id="mySidepanel" class="sidepanel">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <% subcategories.forEach(subCategory => { %>
-                    <a href="#"><%- subCategory %></a>
+                    <a href="#"><%- subCategory.name %></a>
                 <% }) %>    
             </div>
               
@@ -20,7 +20,7 @@
         <div class="container products-container">
             <aside class="subcategories_menu-desktop">
                 <% subcategories.forEach(subCategory => { %>
-                    <a href="#"><%- subCategory %></a>
+                    <a href="#"><%- subCategory.name %></a>
                 <% }) %>   
             </aside>
             <section class="products">
@@ -28,7 +28,7 @@
                     <div class="product">
                         <a href="/products/detail/<%- product.id %>">
                             <div class="productDiscount"><%- product.discount %>% OFF</div>
-                            <img src="/images/productos/<%- product.image[0] %>" alt="">
+                            <img src="/images/productos/<%- product.images[0] %>" alt="">
                             <p class="productName"> 
                                 <% if (product.name.length > 30) { %>
                                     <%- `${product.name.slice(0,30)}...` %>
