@@ -1,19 +1,35 @@
-const { products, categories } = require("../old_database");
+//const { products, categories } = require("../old_database");
+const { Product, Category, Sequelize } = require("../database/models")
+const { Op } = Sequelize;
 
 module.exports = {
     detail: (req, res) => {
         let productId = Number(req.params.id);
         
-        let product = products.find(product => product.id === productId)
-        let sliderProducts = products.filter(item => item.category === product.category)
+        const PRODUCT_PROMISE = Product.findByPk(productId, {
+            include: [{association: "images"}]
+        });
 
-        res.render('productDetail', {
-            sliderTitle : "Productos relacionados",
-            sliderProducts,
-            product,
-            categories,
-            session: req.session
+        const ALL_PRODUCTS_PROMISE = Product.findAll({
+            where: {
+                discount: {
+                    [Op.gte]: 10,
+                },
+            }, 
+            include: [{association: "images"}]
+        });
+
+        Promise.all([PRODUCT_PROMISE, ALL_PRODUCTS_PROMISE])
+        .then(([product, sliderProducts]) => {
+            res.render('productDetail', {
+                sliderTitle : "Productos en oferta",
+                sliderProducts,
+                product,
+                session: req.session
+            })
         })
+        .catch(error => console.log(error))
+
     },
     category: (req, res) => {
         const categoryId = req.params.id;

@@ -4,9 +4,11 @@ const { Product } = require("../database/models");
 module.exports = {
     
     index: (req, res) => {
-        Product.findAll()
+        Product.findAll({
+            include: [{association: "images"}]
+        })
         .then(products => {
-            res.render("index", {
+            return res.render("index", {
                 carousel,
                 sliderTitle: "Productos en oferta",
                 sliderProducts: products,

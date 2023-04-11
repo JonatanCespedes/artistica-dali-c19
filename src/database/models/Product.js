@@ -29,7 +29,7 @@ module.exports = (sequelize, dataTypes) => {
     }
 
     const config = {
-        tablename: "products",
+        tableName: "products",
         createdAt: "created_at",
         updatedAt: "updated_at",
     }
@@ -46,6 +46,11 @@ module.exports = (sequelize, dataTypes) => {
             as: "images",
             foreignKey: "product_id",
         });
+
+       /*  PRODUCT.belongsTo(models.OrderItem, {
+            as: "orderItem",
+            foreignKey: "productId"
+        }); */
     }
 
     return PRODUCT;

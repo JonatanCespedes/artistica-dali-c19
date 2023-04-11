@@ -23,7 +23,7 @@ module.exports = (sequelize, dataTypes) => {
     }
 
     const config = {
-        tablename: "order_items",
+        tableName: "order_items",
         createdAt: "created_at",
         updatedAt: "updated_at",
     }
@@ -32,10 +32,10 @@ module.exports = (sequelize, dataTypes) => {
 
     ORDER_ITEM.associate = (models) => {
         
-        ORDER_ITEM.hasMany(models.Product, {
+       /*  ORDER_ITEM.hasMany(models.Product, {
             as: "products",
             foreignKey: "productId",
-        });
+        }); */
 
         ORDER_ITEM.belongsTo(models.Order, {
             as: "order",

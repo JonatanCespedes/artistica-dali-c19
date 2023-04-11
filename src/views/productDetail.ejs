@@ -8,12 +8,12 @@
         <section class="productDetail">
             <div class="images-container">
                 <div class="thumbnailImages">
-                    <% product.image.forEach(image => { %>
-                        <img src="/images/productos/<%- image%>" alt="Imagen de producto" onclick="myFunction(this);">
+                    <% product.images.forEach(image => { %>
+                        <img src="/images/productos/<%- image %>" alt="Imagen de producto" onclick="myFunction(this);">
                     <% }) %>
                 </div>
                 <div class="mainImage">
-                    <img src="/images/productos/<%= product.image[0]%>" alt="Imagen de producto" id="expandedImg">
+                    <img src="/images/productos/<%= product.images[0]%>" alt="Imagen de producto" id="expandedImg">
                 </div>
             </div>
             <div class="productData-container">
