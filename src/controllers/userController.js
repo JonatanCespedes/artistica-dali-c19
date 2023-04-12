@@ -11,31 +11,36 @@ module.exports = {
         let errors = validationResult(req);
 
         if (errors.isEmpty()) {
+            User.findOne({
+                where: {
+                    email: req.body.email,
+                }
+            })
+            .then((user)  => {
+                req.session.user = {
+                    id: user.id,
+                    name: user.name,
+                    avatar: user.avatar,
+                    rol: user.rol
+                }
 
-            let user = users.find(user => user.email === req.body.email);
+                let tiempoDeVidaCookie = new Date(Date.now() + 60000);
 
-            req.session.user = {
-                id: user.id,
-                name: user.name,
-                avatar: user.avatar,
-                rol: user.rol
-            }
-
-            let tiempoDeVidaCookie = new Date(Date.now() + 60000);
-
-            if(req.body.remember) {
-                res.cookie(
-                    "userArtisticaDali", 
-                    req.session.user, 
-                    {
-                        expires: tiempoDeVidaCookie,
-                        httpOnly: true
-                    })
-            }
-
-            res.locals.user = req.session.user;
-
-            res.redirect("/");
+                if(req.body.remember) {
+                    res.cookie(
+                        "userArtisticaDali", 
+                        req.session.user, 
+                        {
+                            expires: tiempoDeVidaCookie,
+                            httpOnly: true
+                        })
+                }
+    
+                res.locals.user = req.session.user;
+    
+                res.redirect("/");
+            })
+            .catch(error => console.log())
         } else {
             return res.render("user/login", {
                 errors: errors.mapped(),
@@ -87,12 +92,14 @@ module.exports = {
     profile: (req, res) => {
         let userInSessionId = req.session.user.id;
 
-        let userInSession = users.find(user => user.id === userInSessionId);
-
-        res.render("user/userProfile", {
-            user: userInSession,
-            session: req.session
+        User.findByPk(userInSessionId)
+        .then((user) => {
+            res.render("user/userProfile", {
+                user,
+                session: req.session
+            })
         })
+        .catch(error => console.log(error))
     },
     editProfile: (req, res) => {
         let userInSessionId = req.session.user.id;
