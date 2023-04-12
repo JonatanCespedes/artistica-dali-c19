@@ -1,12 +1,5 @@
-const {products, categories, writeProductsJson} = require("../old_database");
-const { validationResult } = require("express-validator")
-
-let subcategories = [];
-products.forEach(product => {
-    if(!subcategories.includes(product.subcategory)){
-        subcategories.push(product.subcategory)
-    }  
-});
+const { validationResult } = require("express-validator");
+const { Product, Category, Subcategory } = require("../database/models");
 
 module.exports = {
     index: (req, res) => {
@@ -14,18 +7,59 @@ module.exports = {
             session: req.session,
         })
     }, 
+   /*  products: async (req, res) => {
+        try {
+            const products = await Product.findAll({
+                include: [
+                    {
+                        association: "subcategory",
+                        include: {
+                            association: "category"
+                        }
+                    }
+                ]
+            });
+            
+            return res.render("admin/adminProducts", {
+                session: req.session,
+                products
+            })
+        } catch (error) {
+           console.log(error) 
+        }
+    },  */
     products: (req, res) => {
-        return res.render("admin/adminProducts", {
-            session: req.session,
-            products
+        Product.findAll({
+            include: [
+                {
+                    association: "subcategory",
+                    include: {
+                        association: "category"
+                    }
+                }
+            ]
         })
+        .then((products) => {
+            return res.render("admin/adminProducts", {
+                session: req.session,
+                products
+            })   
+        })
+        .catch(error => console.log(error))
     }, 
     create: (req, res) => {
-        return res.render("admin/adminProductCreateForm", {
-            session: req.session,
-            categories,
-            subcategories
+        const CATEGORIES_PROMISE = Category.findAll();
+        const SUBCATEGORIES_PROMISE = Subcategory.findAll();
+
+        Promise.all([CATEGORIES_PROMISE, SUBCATEGORIES_PROMISE])
+        .then(([categories, subcategories]) => {
+            return res.render("admin/adminProductCreateForm", {
+                session: req.session,
+                categories,
+                subcategories
+            })
         })
+        .catch(error => console.log(error))
     }, 
     store: (req, res) => {
         let errors = validationResult(req)
