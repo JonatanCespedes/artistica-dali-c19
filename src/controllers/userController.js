@@ -1,6 +1,7 @@
-const { users, writeUsersJson } = require("../old_database");
+//const { users, writeUsersJson } = require("../old_database");
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
+const { User } = require("../database/models");
 
 module.exports = {
     login: (req, res) => {
@@ -49,34 +50,22 @@ module.exports = {
         let errors = validationResult(req);
 
         if(errors.isEmpty()) {
-            let lastId = 0;
-
-            users.forEach(user => {
-             if(user.id > lastId) {
-                 lastId = user.id;
-             }
-            });
-     
+            
             let newUser = {
-             id: lastId + 1,
              name: req.body.name,
              last_name: req.body.last_name,
              email: req.body.email,
              pass: bcrypt.hashSync(req.body.pass1, 12),
              avatar: req.file ? req.file.filename : "default-image.png",
-             rol: "USER",
-             tel: "",
-             address: "",
-             postal_code: "",
-             province: "",
-             city: ""
+             rol: 0,
+             phone: ""
             };
-     
-            users.push(newUser);
-     
-            writeUsersJson(users);
-     
-            res.redirect("/users/login");
+
+            User.create(newUser)
+            .then(() => {
+               return res.redirect("/users/login");
+            })
+            .catch(error => console.log(error))
         } else {
             res.render("user/register", {
                 errors: errors.mapped(),
@@ -84,7 +73,6 @@ module.exports = {
                 session: req.session
             })
         }
-      
     },
     logout: (req, res) => {
 
