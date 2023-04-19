@@ -8,7 +8,7 @@
         <div class="container" style="max-width: 700px;">
           <div class="row">
             <%- include('partials/adminSidebar') %>
-            <form class="row g-3" action="/admin/products/edit/<%= product.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+            <form class="row g-3" action="/admin/products/edit/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="col-12">
                     <label for="inputName" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="inputName" name="name" value="<%= locals.old ? old.name : product.name%>">
@@ -20,7 +20,13 @@
                     <select class="form-select" id="specificSizeSelect" name="category">
                       <option selected hidden>Categorias</option>
                      <% categories.forEach(category => { %>
-                        <option value="<%- category.id %>" <%- locals.old && old.category == category.id ? "selected" : category.id == product.category ? `selected` : ""  %>><%- category.name %></option>
+                        <option 
+                            value="<%- category.id %>" 
+                            <%- locals.old && old.category == category.id ?
+                             "selected" : category.id == product.category_id ?
+                              `selected` : ""  %>>
+                            <%- category.name %>
+                        </option>
                      <% }) %>                          <!--  si existe old y coinciden las categorias / selected /si no -> el id de la cat. es igual a la categoria del producto que estoy editando / selected si no null -->               
                     </select>
                     <% if (locals.errors && errors.category) { %>
@@ -31,7 +37,12 @@
                     <select class="form-select" id="specificSizeSelect" name="subcategory">
                       <option selected hidden>Subcategorias</option>
                      <% subcategories.forEach(subcategory => { %>
-                        <option value="<%- subcategory%>" <%- locals.old && old.subcategory == subcategory ? "selected" : subcategory == product.subcategory ? `selected` : ""  %>><%- subcategory %></option>
+                        <option value="<%- subcategory.id %>" 
+                            <%- locals.old && old.subcategory == subcategory.id ?
+                             "selected" : subcategory.id == product.subcategory ?
+                            `selected` : ""  %>>
+                              <%- subcategory.name %>
+                        </option>
                      <% }) %>
                     </select>
                     <% if (locals.errors && errors.subcategory) { %>
