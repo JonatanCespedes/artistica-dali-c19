@@ -6,6 +6,7 @@ const {
   Subcategory,
   ProductImage,
 } = require("../database/models");
+const fetch = require("node-fetch");
 
 module.exports = {
   index: (req, res) => {
@@ -54,11 +55,13 @@ module.exports = {
       .catch((error) => console.log(error));
   },
   create: (req, res) => {
-    const CATEGORIES_PROMISE = Category.findAll();
+    const CATEGORIES_PROMISE = 
+                                fetch("http://localhost:3000/api/v1/category")
+                                  .then(res => res.json())
     const SUBCATEGORIES_PROMISE = Subcategory.findAll();
 
     Promise.all([CATEGORIES_PROMISE, SUBCATEGORIES_PROMISE])
-      .then(([categories, subcategories]) => {
+      .then(([{ data: categories }, subcategories]) => {
         return res.render("admin/adminProductCreateForm", {
           session: req.session,
           categories,

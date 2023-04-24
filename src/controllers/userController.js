@@ -2,6 +2,7 @@
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const { User } = require("../database/models");
+const axios = require("axios");
 
 module.exports = {
     login: (req, res) => {
@@ -101,15 +102,23 @@ module.exports = {
         })
         .catch(error => console.log(error))
     },
-    editProfile: (req, res) => {
+    editProfile: async (req, res) => {
         let userInSessionId = req.session.user.id;
+        try {
+            const user = await User.findByPk(userInSessionId);
+            const { data } = await axios.get("https://apis.datos.gob.ar/georef/api/provincias?campos=nombre,id")
+            user.cp = "1850"
+            user.tel = "1515151515"
+            user.address = "Calle falsa 123"
 
-        let userInSession = users.find(user => user.id === userInSessionId);
-
-        res.render("user/userProfileEdit", {
-            user: userInSession,
-            session: req.session
-        })
+            res.render("user/userProfileEdit", {
+                user,
+                provinces: data.provincias,
+                session: req.session
+            })
+        } catch (error) {
+            console.log(error)
+        }
     },
     updateProfile: (req, res) => {
         let errors = validationResult(req);
