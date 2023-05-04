@@ -38,7 +38,7 @@
                 <input type="text" name="postal_code" placeholder="Código postal" value="<%= user.cp ? user.cp : "" %>">
             </div>
             <div class="form-ad-input">
-                <select name="province" id="">
+                <select name="province" id="selectProvincias">
                     <option value="" selected hidden>Provincia</option>
                     <% provinces.forEach(province => { %>
                         <option value="<%- province.id %>"><%- province.nombre %></option>
@@ -46,7 +46,7 @@
                 </select>
             </div>
             <div class="form-ad-input">
-                <select name="city" id="">
+                <select name="city" id="selectLocalidades">
                     <option value="">Localidad</option>
                 </select>
             </div>
@@ -62,5 +62,6 @@
         </form>
     </main>
 <%- include('../partials/footer')%>
+<script src="/js/editProfile.js"></script>
 </body>
 </html>
