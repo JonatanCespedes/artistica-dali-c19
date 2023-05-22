@@ -29,36 +29,36 @@
 
                     <!-- PRODUCTOS -->
                     <div>
-                        <button class="clear-cart" onclick="clearCart(`<%=user%>`)">
+                        <button class="clear-cart" onclick="clearCart('<%= order.id %>')">
                             Vaciar carrito
                         </button>  
                     </div>
                     <section class="productos" id="contenedor-productos">
-                       <% products.forEach(product => { %>
+                       <% products.forEach(item => { %>
                         <div class="producto">
                             <div class="imagen">
-                                <img src="/images/productos/<%- product.images[0].image %>" alt="">
+                                <img src="/images/productos/<%- item.product.images[0].image %>" alt="">
                             </div>
                             <div class="detalles">
-                                <h3><%- product.name %> </h3>
+                                <h3><%- item.product.name %> </h3>
                                 <div>
                                     <div class="precio">
-                                        <span class="precio-unitario">Precio unitario: $<%- product.price %> </span>
-                                        <span class="precio-sumado">Precio total: $<%- (Number(product.price) * Number(product.quantity))%> </span>
+                                        <span class="precio-unitario">Precio unitario: $<%- item.product.price %> </span>
+                                        <span class="precio-sumado">Precio total: $<%- (Number(item.product.price) * Number(item.quantity))%> </span>
                                     </div>
                                     <div>
-                                        <button class="clear-cart" onclick="removeAll(`<%- product.id %>`, `<%= session.user.id %>`)">
+                                        <button class="clear-cart" onclick="removeAllOfOneProduct('<%- item.id %>')">
                                             Quitar del carrito
                                         </button>
                                     </div>
                                     <div class="productNumber">
                                         <label for="cantidad">Cantidad</label>
                                         <div class="counter">
-                                            <button type="button" class="btn-subtract" onclick="removeOne(`<%- product.id %>`, `<%= session.user.id %>`)">
+                                            <button type="button" class="btn-subtract" onclick="removeOneProduct('<%- item.id %>')">
                                                 -
                                             </button>
-                                                <div><%- product.quantity %></div>      
-                                            <button type="button" id="btn-add" onclick="addToCart(`<%= product.id %>`, 1,`<%= session.user.id %>`)">
+                                                <div><%- item.quantity %></div>      
+                                            <button type="button" id="btn-add" onclick="addToCart('<%= item.product.id %>')">
                                                 +
                                             </button>
                                         </div>
@@ -161,7 +161,8 @@
             <% } %>
         </div>
     </div>
-    <script src="/javascripts/cart.js"></script>
+    <script src="/js/cart.js"></script>
+
 </body>
 </html>
 

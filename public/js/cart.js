@@ -15,12 +15,41 @@ const getData = async (url, token) => {
 const postData = async (url, data, token) => {
   return await fetch(url, {
     method: "POST",
-
     headers: {
       "Content-Type": "application/json",
       authorization: "Bearer " + token,
     },
     body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((result) => result)
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
+
+const putData = async (url, token) => {
+  return await fetch(url, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: "Bearer " + token,
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => result)
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
+
+const deleteData = async (url, token) => {
+  return await fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: "Bearer " + token,
+    },
   })
     .then((response) => response.json())
     .then((result) => result)
@@ -36,11 +65,28 @@ const addToCart = async (productId) => {
     quantity: 0,
   };
   const response = await postData(ORDERS_URL, data, token);
-  console.log(response);
+  alert(response)
+  window.location.reload();
+
 };
 
-const removeOneProduct = async () => {};
+const removeOneProduct = async (itemId) => {
+    const ENDPOINT = `${API_BASE_URL}/orders/${itemId}`;
+    const response = await  putData(ENDPOINT, token);
+    alert(response)
+    window.location.reload();
+};
 
-const removeAllOfOneProduct = async () => {};
+const removeAllOfOneProduct = async (itemId) => {
+    const ENDPOINT = `${API_BASE_URL}/orders/${itemId}`;
+    const response = await  deleteData(ENDPOINT, token);
+    alert(response)
+    window.location.reload();
+};
 
-const clearCart = async () => {};
+const clearCart = async (orderId) => {
+    const ENDPOINT = `${API_BASE_URL}/orders/clear/${orderId}`;
+    const response = await  putData(ENDPOINT, token);
+    alert(response)
+    window.location.reload();
+};

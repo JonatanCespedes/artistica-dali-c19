@@ -107,17 +107,20 @@ module.exports = {
       where: {
         userId: userId
       },
-      include: [{association: "orderItems", include: [{association: "products", include: [{association: "images"}]}]}]
+      include: [{association: "orderItems", include: [{association: "product", include: [{association: "images"}]}]}]
     })
       .then((order) => {
         let products = order?.orderItems.map((item) => {
           return {
-            ...item.products,
+            product: item.product,
             quantity: item.quantity,
+            id: item.id
           };
         });
+
         res.render("productCart", {
           session: req.session,
+          order,
           products: products !== undefined ? products : [],
           user: req.session.user?.id || null,
         });
