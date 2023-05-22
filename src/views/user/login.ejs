@@ -9,18 +9,20 @@
     <main class="usersForm-container">
        
         <h3 class="userTitle">LOGIN</h3>
-        <form action="/users/login" method="POST" class="form-ad">
+        <form action="/users/login" method="POST" class="form-ad" id="loginForm">
             <div class="form-ad-input">
-                <input type="email" name="email" placeholder="Ingresá tu email">
+                <input type="email" name="email" id="email" placeholder="Ingresá tu email">
                 <% if (locals.errors && errors.email) { %>
                     <small class="text-danger"><%= errors.email.msg %> </small>
                 <% } %>
+                <small id="emailErrors" class="text-danger"></small>
             </div>
             <div class="form-ad-input">
-                <input type="password" name="pass" placeholder="Contraseña">
+                <input type="password" id="pass" name="pass" placeholder="Contraseña">
                 <% if (locals.errors && errors.pass) { %>
                     <small class="text-danger"><%= errors.pass.msg %> </small>
                 <% } %>
+                <small class="text-danger" id="passErrors"></small>
             </div>
             <div class="form-ad-input_check">
                 <input type="checkbox" name="remember" id="check">
@@ -30,6 +32,8 @@
             <% if (locals.errorMsg ) { %>
                     <small class="text-danger"><%= errorMsg %> </small>
             <% } %>
+            <small class="text-danger" id="submitErrors"></small>
+
             <button type="submit" class="btn btn-ad-primary">
                 INGRESAR
             </button>
@@ -37,5 +41,6 @@
         </form>
     </main>
 <%- include('../partials/footer')%>
+    <script src="/js/validations/formLoginValidations.js"></script>
 </body>
 </html>

@@ -151,8 +151,9 @@
   .products-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 2rem;
+    width: 100%;
   }
 
   .products-container aside {
@@ -161,7 +162,14 @@
     padding: 2rem 1rem;
     border: 1px solid var(--primary);
     border-radius: 10px;
-    width: 50%;
+    width: 30%;
   }
-  
+
+  .products-container .title-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }

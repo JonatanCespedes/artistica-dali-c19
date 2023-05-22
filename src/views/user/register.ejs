@@ -9,36 +9,41 @@
     <main class="usersForm-container">
        
         <h3 class="userTitle">Registrate</h3>
-        <form action="/users/register" method="POST" enctype="multipart/form-data" class="form-ad" >
+        <form action="/users/register" method="POST" id="registerform" enctype="multipart/form-data" class="form-ad" >
             <div class="form-ad-input">
-                <input type="text" name="name" placeholder="Nombre" value="<%= locals.old && old.name %>">
+                <input id="name" type="text" name="name" placeholder="Nombre" value="<%= locals.old && old.name %>">
                 <% if (locals.errors && errors.name) { %>
                     <small class="text-danger"><%= errors.name.msg %> </small>
-                <% } %>
+                    <% } %>
+                    <small class="text-danger" id="nameErrors"></small>
             </div>
             <div class="form-ad-input">
-                <input type="text" name="last_name" placeholder="Apellido" value="<%= locals.old && old.last_name %>">
+                <input id="lastname" type="text" name="last_name" placeholder="Apellido" value="<%= locals.old && old.last_name %>">
                 <% if (locals.errors && errors.last_name) { %>
                     <small class="text-danger"><%= errors.last_name.msg %> </small>
                 <% } %>
+                <small class="text-danger" id="lastnameErrors"></small>
             </div>
             <div class="form-ad-input">
-                <input type="email" name="email" placeholder="Ingresá tu email" >
+                <input type="email" id="email" name="email" placeholder="Ingresá tu email" >
                 <% if (locals.errors && errors.email) { %>
                     <small class="text-danger"><%= errors.email.msg %> </small>
                 <% } %>
+                <small class="text-danger" id="emailErrors"></small>
             </div>
             <div class="form-ad-input">
-                <input type="password" name="pass1" placeholder="Contraseña">
+                <input type="password" id="pass" name="pass1" placeholder="Contraseña">
                 <% if (locals.errors && errors.pass1) { %>
                     <small class="text-danger"><%= errors.pass1.msg %> </small>
                 <% } %>
+                <small class="text-danger" id="passErrors"></small>
             </div>
             <div class="form-ad-input">
-                <input type="password" name="pass2" placeholder="Repetir contraseña">
+                <input type="password" id="pass2" name="pass2" placeholder="Repetir contraseña">
                 <% if (locals.errors && errors.pass2) { %>
                     <small class="text-danger"><%= errors.pass2.msg %> </small>
                 <% } %>
+                <small class="text-danger" id="pass2Errors"></small>
             </div>
             <div class="input-file">
                 <p>Agregar foto</p>
@@ -50,7 +55,9 @@
                 <% if (locals.errors && errors.terms) { %>
                     <small class="text-danger"><%= errors.terms.msg %> </small>
                 <% } %>
+                <small class="text-danger" id="termsErrors"></small>
             </div>
+            <small class="text-danger" id="submitErrors"></small>
             <button type="submit" class="btn btn-ad-primary">
                 REGISTRATE
             </button>
@@ -58,5 +65,7 @@
         </form>
     </main>
 <%- include('../partials/footer')%>
+<script src="/js/validations/formRegisterValidations.js"></script>
+
 </body>
 </html>

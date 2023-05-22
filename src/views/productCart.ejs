@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs')  %> 
+<body>
+    <%- include('./partials/header.ejs') %> 
+
+    <div class="carrito">
+        <div class="container">
+            <% if (products.length === 0) { %>
+                <h2 class="title">No hay productos en su carrito</h2>
+                <h4 class="subtitle">Selecciona alguna de nuestras categorías para encontrar los mejores productos:</h4>
+                <section class="categories-section">
+                    <div class="home-categories">
+                        <div class="category-card">
+                            <a href="/products/category/1"><img src="/images/categorias/cat_escolar.jpg" alt=""></a>
+                        </div>
+                        <div class="category-card">
+                            <a href="/products/category/2"> <img src="/images/categorias/cat_artistica.jpg" alt=""></a>
+                        </div>
+                        <div class="category-card">
+                            <a href="/products/category/3"> <img src="/images/categorias/cat_oficina.jpg" alt=""></a>
+                        </div>
+                    </div> 
+                </section>
+            <% } else { %>
+            <h2>Productos en su Carrito</h2>
+            <form action="#">
+               <div class="row">
+
+                    <!-- PRODUCTOS -->
+                    <div>
+                        <button class="clear-cart" onclick="clearCart(`<%=user%>`)">
+                            Vaciar carrito
+                        </button>  
+                    </div>
+                    <section class="productos" id="contenedor-productos">
+                       <% products.forEach(product => { %>
+                        <div class="producto">
+                            <div class="imagen">
+                                <img src="/images/productos/<%- product.productImages[0].image %>" alt="">
+                            </div>
+                            <div class="detalles">
+                                <h3><%- product.name %> </h3>
+                                <div>
+                                    <div class="precio">
+                                        <span class="precio-unitario">Precio unitario: $<%- product.price %> </span>
+                                        <span class="precio-sumado">Precio total: $<%- (Number(product.price) * Number(product.quantity))%> </span>
+                                    </div>
+                                    <div>
+                                        <button class="clear-cart" onclick="removeAll(`<%- product.id %>`, `<%= session.user.id %>`)">
+                                            Quitar del carrito
+                                        </button>
+                                    </div>
+                                    <div class="productNumber">
+                                        <label for="cantidad">Cantidad</label>
+                                        <div class="counter">
+                                            <button type="button" class="btn-subtract" onclick="removeOne(`<%- product.id %>`, `<%= session.user.id %>`)">
+                                                -
+                                            </button>
+                                                <div><%- product.quantity %></div>      
+                                            <button type="button" id="btn-add" onclick="addToCart(`<%= product.id %>`, 1,`<%= session.user.id %>`)">
+                                                +
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div> 
+                       <% }) %>
+                    </section>
+
+                    <!-- ENVIO -->
+                <div class="container-bottom">
+
+                    
+                    <section class="envio col-12 col-lg-8">
+                        <h4>Formas de envío</h4>
+                        <!-- RADIO BUTTONS -->
+                        <div class="radio-buttons">
+                            <div>
+                                <label for="sucursal-radio">Retiro en sucursal </label>
+                                <input type="radio" name="envio" value="sucursal" class="radio" id="sucursal-radio" onclick="radio(0)">
+                            </div>
+                            <div>
+                                <label for="domicilio-radio">Envío a domicilio </label>
+                                <input type="radio" name="envio" value="domicilio" class="radio" id="domicilio-radio" onclick="radio(1)">
+                            </div>
+                        </div>
+                        <!-- SUCURSAL -->
+                        <div class="sucursal none" id="sucursal-inputs">
+                            <div>
+                                <label for="sucursal">Sucursal</label>
+                                <select name="sucursal" id="sucursal" class="input">
+                                    <option value="none"> </option>
+                                    <option value="sucursal1">Sucursal 1</option>
+                                    <option value="sucursal2">Sucursal 2</option>
+                                    <option value="sucursal3">Sucursal 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- DOMICILIO -->
+                        <div class="domicilio none" id="domicilio-inputs">
+                            <div>
+                                <label for="calle">Calle</label>
+                                <input type="text" name="calle" id="calle" class="input" value="Calle">
+                            </div>
+                            <div>
+                                <label for="numero">Número</label>
+                                <input type="number" name="numero" id="numero" class="input" value="Numero">
+                            </div>
+                            <div>
+                                <label for="dpto">Dpto.</label>
+                                <input type="text" name="dpto" id="dpto" class="input" value="dpto">
+                            </div>
+                            <div>
+                                <label for="cpostal">C. Postal</label>
+                                <input type="text" name="cpostal" id="cpostal" class="input" value="Postal code">
+                            </div>
+                            <div>
+                                <label for="provincia">Provincia</label>
+                                <select name="provincia" id="provincia" class="input">
+                                    <option value="none"> </option>
+                                    <option value="provincia">provincia</option>
+                                    <option value="provincia">provincia</option>
+                                    <option value="provincia">provincia</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="localidad">Localidad</label>
+                                <select name="localidad" id="localidad" class="input">
+                                    <option value="none"> </option>
+                                    <option value="localidad">localidad</option>
+                                    <option value="localidad">localidad</option>
+                                    <option value="localidad">localidad</option>
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- PAGO -->
+                    <section class="pagar col-11 col-lg-4">
+                        <div class="subtotal">
+                            <h5>Subtotal</h5>
+                                Precio final 
+                            <span id="precioSubtotal">$PrecioFinal</span>
+                        </div>
+                        <div class="costo-envio">
+                            <h5>Costo de envío</h5>
+                            <span>$340</span>
+                        </div>
+                        <div class="total">
+                            <h5>TOTAL</h5>
+                            <span id="precioTotal">$PrecioTotal</span>
+                        </div>
+                        <button type="submit">PAGAR</button>
+                    </section>
+                </div>
+               </div>
+            </form>
+            <% } %>
+        </div>
+    </div>
+    <script src="/javascripts/cart.js"></script>
+</body>
+</html>
+

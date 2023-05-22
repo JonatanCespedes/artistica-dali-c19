@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('partials/head.ejs') %>
+<body>
+    <%- include('partials/header.ejs') %>
+    <main class="categories search-result">
+        <div class="container search-result-products-container">
+            <% if (result.length > 0) { %>
+                <h2 class="subtitle">Resultados de la búsqueda de <%- search %></h2>
+                <section class="products">
+                    <% result.forEach(product => { %>
+                        <div class="product">
+                            <a href="/products/detail/<%- product.id %>">
+                                <div class="productDiscount"><%- product.discount %>% OFF</div>
+                                <img src="/images/productos/<%- product.images[0].image%>" alt="">
+                                <p class="productName"> 
+                                    <% if (product.name.length > 30) { %>
+                                        <%- `${product.name.slice(0,30)}...` %>
+                                    <% } else { %>
+                                        <%= product.name %>
+                                    <% } %></p>
+                                <h4 class="productPrice">$<%- product.price %></h4>
+                            </a>
+                        </div>
+                    <% }) %> 
+                </section> 
+            <% }else{%>
+                <h2 class="title">No hay resultados de la búsqueda de <%= search %></h2>
+            <% } %>
+        </div>
+    </main>
+    <%- include('partials/footer.ejs')%>
+    <script src="/js/categoriesSidePanel.js"></script>
+</body>
+</html>

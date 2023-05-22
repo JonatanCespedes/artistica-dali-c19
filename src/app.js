@@ -1,11 +1,16 @@
 const express = require("express");
 const app = express();
-const PORT = 3000;
+
 const path = require("path");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const cookieCheck = require("./middlewares/cookieCheck");
+const categoriesHeader = require('./middlewares/categoriesHeader');
+
+require('dotenv').config();
+
+const PORT = process.env.PORT || 3000;
 
 
 /* Template engine config */
@@ -13,7 +18,7 @@ app.set("view engine", "ejs");
 app.set("views", "./src/views");
 
 /* Middlewares */
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(methodOverride("_method"));
@@ -24,6 +29,8 @@ app.use(session({
 }));
 app.use(cookieParser());
 app.use(cookieCheck);
+app.use(categoriesHeader)
+
 
 /* Routers */
 const indexRouter = require("./routes");

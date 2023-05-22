@@ -44,4 +44,35 @@ ul {
     color: var(--primary)    
 }
 
+.title {
+    color: var(--dark-blue);
+    font-family: var(--font_baloo);
+    text-align: center;
+    font-size: 2rem;
+}
 
+.subtitle {
+    color: var(--primary);
+    font-family: var(--font_baloo);
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.is-valid {
+    border: 1px solid green !important;
+    color: green !important;
+}
+.is-invalid {
+    border: 1px solid red !important;
+    color: red !important;
+}
+
+.search-result {
+    min-height: 70vh;
+}
+
+.search-result-products-container {
+    display: flex;
+    flex-direction: column;
+    
+}
