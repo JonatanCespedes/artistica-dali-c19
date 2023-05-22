@@ -47,10 +47,10 @@ module.exports = (sequelize, dataTypes) => {
             foreignKey: "product_id",
         });
 
-       /*  PRODUCT.belongsTo(models.OrderItem, {
-            as: "orderItem",
+        PRODUCT.hasMany(models.OrderItem, {
+            as: "orderItems",
             foreignKey: "productId"
-        }); */
+        });
     }
 
     return PRODUCT;

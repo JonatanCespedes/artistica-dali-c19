@@ -106,10 +106,11 @@ module.exports = {
     Order.findOne({
       where: {
         userId: userId
-      }
+      },
+      include: [{association: "orderItems", include: [{association: "products", include: [{association: "images"}]}]}]
     })
       .then((order) => {
-        let products = order?.order_items.map((item) => {
+        let products = order?.orderItems.map((item) => {
           return {
             ...item.products,
             quantity: item.quantity,
@@ -121,6 +122,6 @@ module.exports = {
           user: req.session.user?.id || null,
         });
       })
-      .catch((error) => res.send(error));
+      .catch((error) => console.log(error));
   },
 };

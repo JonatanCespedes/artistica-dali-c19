@@ -3,12 +3,13 @@ const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const { User } = require("../database/models");
 const axios = require("axios");
+const {generateToken} = require("../helpers/jwt.helper")
 
 module.exports = {
     login: (req, res) => {
         res.render("user/login", { session: req.session })
     },
-    processLogin: (req, res) => {
+    processLogin:  (req, res) => {
         let errors = validationResult(req);
 
         if (errors.isEmpty()) {
@@ -25,6 +26,8 @@ module.exports = {
                     rol: user.rol
                 }
 
+                const token = generateToken(user);
+
                 let tiempoDeVidaCookie = new Date(Date.now() + 60000);
 
                 if(req.body.remember) {
@@ -39,7 +42,7 @@ module.exports = {
     
                 res.locals.user = req.session.user;
     
-                res.redirect("/");
+                res.redirect(`/?token=${token}`);
             })
             .catch(error => console.log())
         } else {

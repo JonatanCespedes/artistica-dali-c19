@@ -37,6 +37,11 @@
                                 <% } %></p>
                             <h4 class="productPrice">$<%- product.price %></h4>
                         </a>
+                        <% if (session.user !== undefined) { %>
+                            <div class="btn btn-ad-primary" onclick="addToCart('<%= product.id%>')">Agregar al carrito</div>
+                            <% } else { %>
+                            <div class="btn btn-ad-primary" id="btnAddToCartNotLogin">Agregar al carrito Sin log</div>
+                            <% } %>
                     </div>
                 <% }) %> 
             </section>
@@ -44,5 +49,6 @@
     </main>
     <%- include('partials/footer.ejs')%>
     <script src="/js/categoriesSidePanel.js"></script>
+    <script src="/js/cart.js"></script>
 </body>
 </html>

@@ -37,6 +37,7 @@ ul {
     width: -moz-fit-content;
     background: var(--primary);
     transition: all 1s ease;
+    cursor: pointer;
 }
 
 .btn-ad-primary:hover {
