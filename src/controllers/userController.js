@@ -167,5 +167,8 @@ module.exports = {
                 errors: errors.mapped(),
             })
         }
+    },
+    googleLogin: async (req, res) => {
+        res.redirect("/")
     }
 }

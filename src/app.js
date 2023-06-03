@@ -7,6 +7,7 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const cookieCheck = require("./middlewares/cookieCheck");
 const categoriesHeader = require('./middlewares/categoriesHeader');
+const passport = require("passport");
 
 require('dotenv').config();
 
@@ -29,7 +30,10 @@ app.use(session({
 }));
 app.use(cookieParser());
 app.use(cookieCheck);
-app.use(categoriesHeader)
+app.use(categoriesHeader);
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 /* Routers */

@@ -35,6 +35,9 @@ module.exports = (sequelize, dataTypes) => {
         avatar: {
             type: dataTypes.STRING(100),
         },
+        googleId: {
+            type: dataTypes.STRING(100),
+        },
     }
 
     const config = {
