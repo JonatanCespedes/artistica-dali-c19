@@ -13,8 +13,6 @@ module.exports = (passport) => {
     new Strategy(CONFIGS, async (accessToken, refreshToken, profile, done) => {
       // Aquí puedes almacenar los datos del perfil del usuario en la base de datos o realizar otras acciones
       try {
-        console.log(profile)
-        console.log(profile.name.givenName)
         const [user, created] = await User.findOrCreate({
             where: {
               googleId: profile.id,

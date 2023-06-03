@@ -19,7 +19,12 @@ const updateUserValidator = require("../validations/updateUserValidator");
 const sessionUserCheck = require("../middlewares/sessionUserCheck");
 const passport = require("passport");
 require("../middlewares/passportConfig")(passport);
-
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+passport.deserializeUser(function(user, done) {
+done(null, user);
+});
 
 
 /* GET - Login Form */

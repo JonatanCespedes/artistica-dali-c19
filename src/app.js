@@ -28,13 +28,11 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+app.use(passport.session());
+app.use(passport.initialize());
 app.use(cookieParser());
 app.use(cookieCheck);
 app.use(categoriesHeader);
-app.use(passport.initialize());
-app.use(passport.session());
-
-
 
 /* Routers */
 const indexRouter = require("./routes");
